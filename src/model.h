@@ -11,7 +11,10 @@
 #include"huffman_tree.h"
 class TrainModel{
 public:
-     void Train();
-
+    void Train();
+    float sigmoid(const float& x);
+private:
+    char* train_file;
+    int dim;
 }
 #endif //WORD_VECTOTS_MODEL_H
