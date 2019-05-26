@@ -7,14 +7,19 @@
 #include <math.h>
 
 #include"dict_manager.h"
-#include"reverse_index.h"
-#include"huffman_tree.h"
+
 class TrainModel{
 public:
-    void Train();
-    float sigmoid(const float& x);
+    TrainModel();
+    ~TrainModel();
+    bool Init(const std::string trainfile);
+    void Train(const std::vector<VocabWords>& vocab_words,const std::map<std::string,int> word_hash);
 private:
-    char* train_file;
-    int dim;
-}
+    float Sigmoid(const float& x);
+    void VecAdd(const std::vector<float>& v1,std::vector<float>& v2);
+private:
+    std::string train_file_;
+    int dim=100;
+    float alpha = 0.025;
+};
 #endif //WORD_VECTOTS_MODEL_H

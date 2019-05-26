@@ -1,10 +1,13 @@
 #ifndef WORD_VECTOTS_DICT_MANAGER_H
 #define WORD_VECTOTS_DICT_MANAGER_H
 
-#include <unordered_map>
+#include <map>
+#include<iostream>
+
 #include "boost/shared_ptr.hpp"
 #include "boost/algorithm/string.hpp"
 
+#include"type.h"
 
 class DictManager {
 public:
@@ -13,16 +16,14 @@ public:
 
 public:
     bool Init(const std::string corpus_path);
-    std::unordered_map<std::string,int>* GetCorpus();
+    void DoWork(std::vector<VocabWords>& vocab_words,std::map<std::string,int>& word_hash);
 
 private:
-	bool LoadStopWord();
 	bool LoadCorpus();
+    static bool Comp(VocabWords a, VocabWords b);
 
 private:
-    std::unordered_map<std::string,int> stop_word_;
-    std::unordered_map<std::string,int> corpus_;
-    std::string stop_word_path_;
+    std::map<std::string,int> corpus_;
     std::string corpus_path_;
 };
 
